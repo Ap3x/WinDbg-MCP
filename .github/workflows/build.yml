@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        arch: [x64, Win32, ARM64]
+        include:
+          - arch: x64
+            artifact_name: windbg-mcp-x64
+          - arch: Win32
+            artifact_name: windbg-mcp-x86
+          - arch: ARM64
+            artifact_name: windbg-mcp-arm64
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Configure CMake
+        run: >
+          cmake -B build -S .
+          -G "Visual Studio 17 2022" -A ${{ matrix.arch }}
+          -DFASTMCPP_BUILD_TESTS=OFF
+          -DFASTMCPP_BUILD_EXAMPLES=OFF
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: |
+            build/Release/windbg-mcp.dll
+            build/Release/windbg-mcp-proxy.exe
