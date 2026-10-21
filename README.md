@@ -4,21 +4,6 @@ A WinDbg extension that embeds an [MCP (Model Context Protocol)](https://modelco
 
 Built with [fastmcpp](https://github.com/0xeb/fastmcpp) and the Windows Debugger Engine (dbgeng).
 
-## How Is This Different from mcp-windbg?
-
-[mcp-windbg](https://github.com/svnscha/mcp-windbg) is a Python-based MCP server that wraps CDB (the console debugger) as a subprocess. It launches CDB, pipes commands to it, and parses the text output.
-
-This project takes a different approach — it is a **native C++ WinDbg extension DLL** that loads directly into your existing WinDbg session and calls the dbgeng COM interfaces (`IDebugClient`, `IDebugControl`, etc.) in-process. Key differences:
-
-| | **WinDbg-MCP** (this project) | **mcp-windbg** |
-|---|---|---|
-| Language | C++ | Python |
-| Integration | WinDbg extension DLL loaded via `.load` | Separate process wrapping CDB |
-| Debugger access | Direct dbgeng COM API calls | Text command piping to CDB subprocess |
-| Session | Attaches to your existing WinDbg session | Launches its own CDB instance |
-| UI | You keep the full WinDbg UI | CDB only (no GUI) |
-| Dependencies | None beyond Visual Studio (builds standalone) | Python + pip packages |
-
 **Session sharing** — Because WinDbg-MCP loads into your existing WinDbg session, you can set breakpoints in the UI, hit one, and then ask Claude to analyze the state. With mcp-windbg, CDB runs in its own isolated session — you can't interact with it through a GUI, and it can't share state with an existing debugging session.
 
 **Kernel debugging** — If WinDbg is attached to a kernel target, the extension just works since it shares the same dbgeng session. Getting CDB to attach to kernel targets is more involved.
