@@ -4,9 +4,9 @@ A WinDbg extension that embeds an [MCP (Model Context Protocol)](https://modelco
 
 Built with [fastmcpp](https://github.com/0xeb/fastmcpp) and the Windows Debugger Engine (dbgeng).
 
-**Session sharing** — Because WinDbg-MCP loads into your existing WinDbg session, you can set breakpoints in the UI, hit one, and then ask Claude to analyze the state. With mcp-windbg, CDB runs in its own isolated session — you can't interact with it through a GUI, and it can't share state with an existing debugging session.
+**Session sharing** — WinDbg-MCP loads into your existing WinDbg session, allowing you to set breakpoints in the UI, hit one, and then ask Claude to analyze the state without leaving your debugging environment.
 
-**Kernel debugging** — If WinDbg is attached to a kernel target, the extension just works since it shares the same dbgeng session. Getting CDB to attach to kernel targets is more involved.
+**Kernel debugging** — If WinDbg is attached to a kernel target, the extension just works seamlessly since it shares the same dbgeng session.
 
 ## How It Works
 
