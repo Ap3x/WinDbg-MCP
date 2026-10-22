@@ -8,6 +8,26 @@ Built with [fastmcpp](https://github.com/0xeb/fastmcpp) and the Windows Debugger
 
 **Kernel debugging** — If WinDbg is attached to a kernel target, the extension just works seamlessly since it shares the same dbgeng session.
 
+## Learning Materials
+
+Comprehensive JavaScript scripting guides are included in the `/learning` directory:
+
+- **Introduction & Setup** — Get started with WinDbg scripting environments
+- **First Script** — Write your first debugging script
+- **Debugger Object Model** — Understand WinDbg's JavaScript object architecture
+- **Memory Operations** — Read, write, and search memory programmatically
+- **Registers & Threads** — Manipulate CPU state and manage threads
+- **Symbols & Types** — Work with symbols and type information
+- **Breakpoints & Events** — Control breakpoints and handle debug events
+- **Iterators & LINQ** — Query debug data with powerful APIs
+- **Custom Visualizers** — Build specialized debug views
+- **Practical Scripts** — Real-world automation examples
+- **Kernel Debugging** — Kernel-mode debugging with JavaScript
+- **Async & Time Travel** — Async debugging and Time Travel Debugging (TTD)
+- **Integration & Automation** — Integrate scripts into your workflow
+
+See [learning/README.md](learning/README.md) for the full course guide.
+
 ## How It Works
 
 ```
